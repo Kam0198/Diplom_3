@@ -60,7 +60,6 @@ class TestBaseFunctional:
         personal_account.click_on_ingredient()
         personal_account.wait_for_invisibility_close_window()
         personal_account.click_on_close_window_button_details()
-#timesleep
         text_ingredients = personal_account.get_ingredients_details().text
         assert text_ingredients != "Детали ингредиента"
 
