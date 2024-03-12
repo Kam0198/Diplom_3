@@ -3,6 +3,7 @@ import time
 import allure
 
 from data import email, password
+from locators.locators import PersonalAccountPageLocators
 from pages.login_page import LoginPage
 from pages.personal_account_page import PersonalAccount
 from urls import Urls
@@ -20,7 +21,7 @@ class TestBaseFunctional:
         personal_account.wait_personal_account_page()
         personal_account.click_order_feed_button()
         personal_account.click_constructor_button()
-        assert Urls.main_page_url in driver.current_url
+        assert Urls.main_page_url in personal_account.get_current_url()
 
     @allure.title("Проверка перехода авторизованного пользователя в раздел 'Лента заказов'")
     def test_enter_to_order_feed(self, driver):
@@ -32,7 +33,7 @@ class TestBaseFunctional:
         personal_account = PersonalAccount(driver)
         personal_account.wait_personal_account_page()
         personal_account.click_order_feed_button()
-        assert Urls.order_feed_url in driver.current_url
+        assert Urls.order_feed_url in personal_account.get_current_url()
 
     @allure.title("Проверка появления всплывающего окна с деталями при клике на ингредиент")
     def test_get_modal_window_with_details(self, driver):
@@ -59,9 +60,8 @@ class TestBaseFunctional:
         personal_account.click_on_ingredient()
         personal_account.wait_for_invisibility_close_window()
         personal_account.click_on_close_window_button_details()
-        time.sleep(2)
+#timesleep
         text_ingredients = personal_account.get_ingredients_details().text
-        time.sleep(3)
         assert text_ingredients != "Детали ингредиента"
 
     @allure.title("Проверка увеличения счетчика при добавлении ингредиента в заказ")

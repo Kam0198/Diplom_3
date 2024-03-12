@@ -10,6 +10,9 @@ class BasePage:
     def go_to_site(self, url):
         self.driver.get(url)
 
+    def get_current_url(self):
+        return self.driver.current_url
+
     def find_element_located_click(self, locator, time=10):
         element = WebDriverWait(self.driver, time).until(
              EC.presence_of_element_located(locator),
@@ -29,6 +32,8 @@ class BasePage:
 
     def wait_for_visibility(self, locator):
         WebDriverWait(self.driver, 40).until(EC.visibility_of_element_located(locator))
+    def wait_for_invisibility(self, locator):
+        WebDriverWait(self.driver, 40).until(EC.invisibility_of_element(locator))
 
     def wait_for_clickable(self, locator):
         WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(locator))

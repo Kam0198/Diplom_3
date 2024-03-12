@@ -36,6 +36,7 @@ class PersonalAccount(BasePage):
     @allure.step("Клик по крестику в модальном окне в деталях ингредиента")
     def click_on_close_window_button_details(self):
         self.find_element_located_click(PersonalAccountPageLocators.ingredients_details_close)
+        self.wait_for_invisibility(PersonalAccountPageLocators.ingredients_details_close)
 
     @allure.step("Перенос ингредиента в заказ")
     def drag_and_drop_elements(self):
@@ -60,14 +61,6 @@ class PersonalAccount(BasePage):
     @allure.step("Ожидаем элемент закрытия модального окна")
     def wait_for_invisibility_close_window(self):
         self.wait_for_visibility(PersonalAccountPageLocators.ingredients_details_close)
-
-    # @allure.step("Ожидаем отображение кнопки 'Оформить заказ'")
-    # def wait_for_invisibility_ordering_button(self):
-    #     self.wait_for_clickable(PersonalAccountPageLocators.ordering_button)
-    #
-    # @allure.step('Проверяем наличие модального окна "Детали ингредиента"')
-    # def find_ingredient_details_window(self):
-    #     return self.find_element_located(MainPageLocators.main_page_locator)
 
     @allure.step("Ожидаем отображение кнопки 'Выход'")
     def wait_for_invisibility_logout_button(self):

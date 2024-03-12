@@ -14,7 +14,7 @@ class TestForgotPassword:
         forgot_password_page.go_to_site(Urls.login_page_url)
         forgot_password_page.wait_header_enter()
         forgot_password_page.click_password_recovery_button_auth()
-        assert Urls.password_forgot_url in driver.current_url
+        assert Urls.password_forgot_url in forgot_password_page.get_current_url()
 
     @allure.title("Проверка ввода почты и клика по кнопке «Восстановить»")
     def test_enter_email_and_click_reset_button(self, driver):
@@ -26,7 +26,7 @@ class TestForgotPassword:
         enter_email.click_login_button_auth()
         password_reset = ResetPassword(driver)
         password_reset.wait_for_invisibility_code()
-        assert Urls.password_reset_url in driver.current_url
+        assert Urls.password_reset_url in forgot_password_page.get_current_url()
 
     @allure.title("Проверка, что кнопка скрыть/показать пароль делает поле активным и подсвечивает его")
     def test_click_to_icon_password(self, driver):
